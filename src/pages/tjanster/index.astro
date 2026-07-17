@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import Services from '../../components/Services.astro';
+import Ruler from '../../components/Ruler.astro';
+---
+
+<Base
+  title="Tjänster — tak, bygg, renovering & snickeri | DTC Sundsvall AB"
+  description="Alla våra tjänster i Sundsvallsområdet: takläggning, byggnation, renovering, snickeri, underhåll och fritidshus. Begär kostnadsfri offert."
+  path="/tjanster/"
+  breadcrumbs={[
+    { name: 'Hem', url: '/' },
+    { name: 'Tjänster', url: '/tjanster/' },
+  ]}
+>
+  <section class="page-hero section-dark">
+    <div class="wrap">
+      <span class="eyebrow">Tjänster</span>
+      <h1>Det här bygger vi</h1>
+    </div>
+  </section>
+  <Ruler tone="dark" />
+  <Services />
+</Base>
+
+<style>
+  .page-hero {
+    padding: clamp(48px, 7vw, 80px) 0 clamp(40px, 6vw, 64px);
+    background: linear-gradient(160deg, var(--spruce) 0%, var(--spruce-2) 100%);
+  }
+
+  .page-hero h1 {
+    color: var(--paper);
+    font-size: clamp(34px, 5.5vw, 64px);
+    margin: 0;
+  }
+</style>

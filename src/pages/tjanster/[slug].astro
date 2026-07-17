@@ -1,0 +1,347 @@
+---
+import Base from '../../layouts/Base.astro';
+import Ruler from '../../components/Ruler.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { services, getService } from '../../data/services';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug } }));
+}
+
+const { slug } = Astro.params;
+const service = getService(slug!)!;
+
+const related = service.related
+  .map((r) => getService(r))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+const site = (Astro.site ?? new URL('https://www.dtcsundsvall.se')).href.replace(/\/$/, '');
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.title,
+    serviceType: service.title,
+    provider: { '@id': `${site}/#business` },
+    areaServed: { '@type': 'Place', name: 'Sundsvall' },
+    url: `${site}/tjanster/${service.slug}/`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: service.faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+
+const breadcrumbs = [
+  { name: 'Hem', url: '/' },
+  { name: 'Tjänster', url: '/tjanster/' },
+  { name: service.title, url: `/tjanster/${service.slug}/` },
+];
+---
+
+<Base
+  title={service.metaTitle}
+  description={service.metaDescription}
+  path={`/tjanster/${service.slug}/`}
+  {breadcrumbs}
+  {jsonLd}
+>
+  <section class="service-hero section-dark">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Brödsmulor">
+        <a href="/">Hem</a> <span aria-hidden="true">/</span>
+        <a href="/tjanster/">Tjänster</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">{service.title}</span>
+      </nav>
+      <span class="dim-label service-dim">{service.dim}</span>
+      <h1>{service.h1}</h1>
+    </div>
+  </section>
+
+  <Ruler tone="dark" />
+
+  <section class="section">
+    <div class="wrap service-body">
+      <div>
+        {service.body.map((p) => <p>{p}</p>)}
+
+        <h2>Det här hjälper vi dig med</h2>
+        <ul class="service-items">
+          {service.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+
+      <aside class="service-aside">
+        <div class="aside-card">
+          <span class="dim-label">OFFERT &lt; 24 H</span>
+          <h3>Kostnadsfri offert</h3>
+          <p>
+            Beskriv ditt projekt så återkommer vi inom en arbetsdag med besiktningstid
+            och fast pris.
+          </p>
+          <a class="btn btn-primary" href="/kontakt/">Begär offert</a>
+        </div>
+
+        <div class="aside-card">
+          <h3 class="aside-h">Relaterade tjänster</h3>
+          <ul class="related-list">
+            {related.map((r) => (
+              <li><a href={`/tjanster/${r.slug}/`}>{r.title}</a></li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <span class="eyebrow">Vanliga frågor</span>
+      <h2>Frågor &amp; svar</h2>
+      <div class="faq-list">
+        {service.faq.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="offert">
+    <div class="wrap contact-cta">
+      <div>
+        <span class="eyebrow">Kontakt</span>
+        <h2>Begär kostnadsfri offert</h2>
+        <p class="contact-cta-lead">
+          Fyll i formuläret så hör vi av oss inom en arbetsdag. Du binder dig inte
+          till något — offerten är alltid kostnadsfri.
+        </p>
+      </div>
+      <div class="form-panel">
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .service-hero {
+    padding: clamp(48px, 7vw, 80px) 0 clamp(40px, 6vw, 64px);
+    background: linear-gradient(160deg, var(--spruce) 0%, var(--spruce-2) 100%);
+  }
+
+  .crumbs {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: rgba(247, 245, 240, .55);
+    margin-bottom: 26px;
+  }
+
+  .crumbs a {
+    color: rgba(247, 245, 240, .75);
+    text-decoration: none;
+  }
+
+  .crumbs a:hover {
+    color: var(--timber);
+  }
+
+  .crumbs span[aria-hidden] {
+    margin: 0 6px;
+  }
+
+  .service-dim {
+    color: var(--timber);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .service-hero h1 {
+    color: var(--paper);
+    font-size: clamp(34px, 5.5vw, 64px);
+    margin: 0;
+    max-width: 18ch;
+  }
+
+  .service-body {
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    gap: clamp(32px, 5vw, 70px);
+    align-items: start;
+  }
+
+  .service-body > div > p {
+    color: var(--ink-soft);
+    max-width: 66ch;
+  }
+
+  .service-body h2 {
+    font-size: clamp(22px, 2.6vw, 30px);
+    margin-top: 44px;
+  }
+
+  .service-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    max-width: 62ch;
+  }
+
+  .service-items li {
+    padding: 13px 16px 13px 42px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    position: relative;
+  }
+
+  .service-items li::before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    width: 13px;
+    height: 8px;
+    border-left: 2.5px solid var(--timber-deep);
+    border-bottom: 2.5px solid var(--timber-deep);
+    transform: translateY(-70%) rotate(-45deg);
+  }
+
+  .service-aside {
+    display: grid;
+    gap: 18px;
+    position: sticky;
+    top: 90px;
+  }
+
+  .aside-card {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px;
+  }
+
+  .aside-card h3 {
+    margin: 8px 0 10px;
+  }
+
+  .aside-h {
+    margin-top: 0 !important;
+  }
+
+  .aside-card p {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+  }
+
+  .related-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  .related-list a {
+    color: var(--timber-deep);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+  }
+
+  .related-list a:hover {
+    text-decoration: underline;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 12px;
+    max-width: 780px;
+    margin-top: 32px;
+  }
+
+  .faq-item {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0 22px;
+  }
+
+  .faq-item summary {
+    font-weight: 600;
+    font-size: 16.5px;
+    padding: 18px 0;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding-right: 34px;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-mono);
+    font-size: 20px;
+    color: var(--timber-deep);
+  }
+
+  .faq-item[open] summary::after {
+    content: '–';
+  }
+
+  .faq-item p {
+    color: var(--ink-soft);
+    padding-bottom: 20px;
+    margin: 0;
+    max-width: 64ch;
+  }
+
+  .contact-cta {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(32px, 5vw, 70px);
+    align-items: start;
+  }
+
+  .contact-cta-lead {
+    color: rgba(247, 245, 240, .72);
+    max-width: 40ch;
+  }
+
+  .form-panel {
+    background: var(--paper);
+    border-radius: var(--radius);
+    padding: clamp(24px, 3vw, 36px);
+    color: var(--ink);
+  }
+
+  @media (max-width: 960px) {
+    .service-body,
+    .contact-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .service-aside {
+      position: static;
+    }
+  }
+</style>

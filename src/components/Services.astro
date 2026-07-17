@@ -1,0 +1,61 @@
+---
+import { services } from '../data/services';
+import ServiceCard from './ServiceCard.astro';
+
+// Beskrivande ankartext per tjänst (SEO — inte "läs mer")
+const linkLabels: Record<string, string> = {
+  taklaggning: 'Takläggning i Sundsvall →',
+  byggnation: 'Byggnation i Sundsvall →',
+  renovering: 'Renovering i Sundsvall →',
+  snickeri: 'Snickeri i Njurunda →',
+  underhall: 'Underhåll i Sundsvall →',
+  'renovering-fritidshus': 'Fritidshusrenovering →',
+};
+---
+
+<section class="section" id="tjanster">
+  <div class="wrap">
+    <span class="eyebrow">Tjänster</span>
+    <h2>Vad vi bygger</h2>
+    <p class="section-lead">
+      Från takbyte till finsnickeri — sex områden, samma krav på hantverk och hållbarhet.
+    </p>
+    <div class="services-grid">
+      {services.map((s) => (
+        <ServiceCard
+          dim={s.dim}
+          title={s.title}
+          excerpt={s.excerpt}
+          href={`/tjanster/${s.slug}/`}
+          linkLabel={linkLabels[s.slug] ?? `${s.title} →`}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-lead {
+    max-width: 56ch;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 960px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 620px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+import Ruler from '../components/Ruler.astro';
+---
+
+<Base
+  title="Integritetspolicy | DTC Sundsvall AB"
+  description="Så behandlar DTC Sundsvall AB dina personuppgifter när du kontaktar oss via formulär, telefon eller e-post. Information enligt GDPR."
+  path="/integritetspolicy/"
+  breadcrumbs={[
+    { name: 'Hem', url: '/' },
+    { name: 'Integritetspolicy', url: '/integritetspolicy/' },
+  ]}
+>
+  <section class="page-hero section-dark">
+    <div class="wrap">
+      <span class="eyebrow">GDPR</span>
+      <h1>Integritetspolicy</h1>
+    </div>
+  </section>
+  <Ruler tone="dark" />
+
+  <section class="section">
+    <div class="wrap policy">
+      <p>
+        DTC Sundsvall AB (org.nr 000000-0000) värnar om din personliga integritet. Den här
+        policyn beskriver hur vi behandlar personuppgifter som du lämnar till oss, i
+        enlighet med dataskyddsförordningen (GDPR).
+      </p>
+
+      <h2>Vilka uppgifter samlar vi in?</h2>
+      <p>
+        När du skickar en offertförfrågan via vårt kontaktformulär behandlar vi de
+        uppgifter du själv lämnar: namn, telefonnummer, e-postadress och beskrivningen av
+        ditt projekt. Vi samlar inte in fler uppgifter än vad som behövs för att besvara
+        din förfrågan.
+      </p>
+
+      <h2>Varför behandlar vi uppgifterna?</h2>
+      <p>
+        Uppgifterna används för att kontakta dig, lämna offert och administrera eventuella
+        uppdrag. Den rättsliga grunden är att vidta åtgärder på din begäran innan avtal
+        ingås (art. 6.1 b GDPR) samt vårt berättigade intresse av att besvara inkommande
+        förfrågningar (art. 6.1 f GDPR).
+      </p>
+
+      <h2>Hur länge sparas uppgifterna?</h2>
+      <p>
+        Förfrågningar som inte leder till uppdrag raderas senast 12 månader efter senaste
+        kontakt. Blir du kund sparas uppgifterna så länge det krävs för avtalet och enligt
+        bokföringslagens krav (7 år för räkenskapsinformation).
+      </p>
+
+      <h2>Vem delar vi uppgifterna med?</h2>
+      <p>
+        Vi säljer aldrig dina uppgifter. Formulärdata skickas via e-posttjänsten Resend
+        och lagras hos vår hostingleverantör; båda behandlar uppgifterna för vår räkning
+        enligt personuppgiftsbiträdesavtal. Uppgifter kan i övrigt lämnas ut om lag
+        kräver det.
+      </p>
+
+      <h2>Dina rättigheter</h2>
+      <p>
+        Du har rätt att begära tillgång till, rättelse av eller radering av dina
+        personuppgifter, begränsning av behandlingen samt att invända mot behandling.
+        Kontakta oss på <a href="mailto:info@dtcsundsvall.se">info@dtcsundsvall.se</a> så
+        hjälper vi dig. Du har också rätt att lämna klagomål till
+        Integritetsskyddsmyndigheten (IMY).
+      </p>
+
+      <h2>Personuppgiftsansvarig</h2>
+      <p>
+        DTC Sundsvall AB, Njurunda, Sundsvall.<br />
+        E-post: <a href="mailto:info@dtcsundsvall.se">info@dtcsundsvall.se</a> ·
+        Telefon: <a href="tel:+4660000000">060-00 00 00</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero {
+    padding: clamp(48px, 7vw, 80px) 0 clamp(40px, 6vw, 64px);
+    background: linear-gradient(160deg, var(--spruce) 0%, var(--spruce-2) 100%);
+  }
+
+  .page-hero h1 {
+    color: var(--paper);
+    font-size: clamp(34px, 5.5vw, 64px);
+    margin: 0;
+  }
+
+  .policy {
+    max-width: 720px;
+  }
+
+  .policy p {
+    color: var(--ink-soft);
+  }
+
+  .policy h2 {
+    font-size: clamp(20px, 2.2vw, 26px);
+    margin-top: 40px;
+  }
+
+  .policy a {
+    color: var(--timber-deep);
+  }
+</style>

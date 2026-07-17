@@ -1,0 +1,145 @@
+---
+import { services } from '../data/services';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-logo">DTC <em>Sundsvall</em> AB</p>
+      <p class="footer-tag">
+        Bygg, tak, renovering och snickeri i Sundsvallsområdet.
+        Byggt för att hålla i norrländskt klimat.
+      </p>
+    </div>
+
+    <nav aria-label="Tjänster">
+      <h2 class="footer-h">Tjänster</h2>
+      <ul>
+        {services.map((s) => (
+          <li><a href={`/tjanster/${s.slug}/`}>{s.title}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav aria-label="Företaget">
+      <h2 class="footer-h">Företaget</h2>
+      <ul>
+        <li><a href="/om-oss/">Om oss</a></li>
+        <li><a href="/kontakt/">Kontakt &amp; offert</a></li>
+        <li><a href="/integritetspolicy/">Integritetspolicy</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <h2 class="footer-h">Kontakt</h2>
+      <!-- NAP — måste matcha Google Business Profile exakt -->
+      <address>
+        DTC Sundsvall AB<br />
+        Njurunda, Sundsvall<br />
+        <a href="tel:+4660000000">060-00 00 00</a><br />
+        <a href="mailto:info@dtcsundsvall.se">info@dtcsundsvall.se</a>
+      </address>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <p>© {year} DTC Sundsvall AB · F-skatt &amp; försäkrade · Org.nr 000000-0000</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--spruce);
+    color: rgba(247, 245, 240, .68);
+    padding: clamp(48px, 7vw, 80px) 0 0;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.3fr;
+    gap: 36px;
+    padding-bottom: 44px;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 76;
+    font-weight: 850;
+    font-size: 21px;
+    text-transform: uppercase;
+    color: var(--paper);
+    margin: 0 0 12px;
+  }
+
+  .footer-logo em {
+    font-style: normal;
+    color: var(--timber);
+  }
+
+  .footer-tag {
+    font-size: 14.5px;
+    max-width: 34ch;
+  }
+
+  .footer-h {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--timber);
+    margin: 0 0 14px;
+  }
+
+  .site-footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 9px;
+  }
+
+  .site-footer a {
+    color: rgba(247, 245, 240, .78);
+    text-decoration: none;
+    font-size: 14.5px;
+  }
+
+  .site-footer a:hover {
+    color: var(--timber);
+  }
+
+  address {
+    font-style: normal;
+    font-size: 14.5px;
+    line-height: 1.9;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--line-dark);
+    padding-top: 22px;
+    padding-bottom: 26px;
+  }
+
+  .footer-bottom p {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .06em;
+    margin: 0;
+    color: rgba(247, 245, 240, .5);
+  }
+
+  @media (max-width: 860px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

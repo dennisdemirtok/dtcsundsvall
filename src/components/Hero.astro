@@ -1,0 +1,121 @@
+---
+---
+
+<section class="hero section-dark">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">Byggfirma · Njurunda / Sundsvall</span>
+      <h1>Byggt för att hålla i <em>norrländskt</em> klimat</h1>
+      <p class="hero-lead">
+        DTC Sundsvall AB utför takläggning, byggnation, renovering och snickeri i hela
+        Sundsvallsområdet — med helhetsansvar från första besiktning till slutbesiktning.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/kontakt/">Begär kostnadsfri offert</a>
+        <a class="btn btn-outline" href="/tjanster/taklaggning/">Våra tjänster</a>
+      </div>
+      <ul class="hero-meta">
+        <li><strong>100&nbsp;%</strong> helhetsansvar</li>
+        <li><strong>F-skatt</strong> &amp; försäkrade</li>
+        <li><strong>ROT</strong> 50&nbsp;000&nbsp;kr/person</li>
+      </ul>
+    </div>
+
+    <!-- Taklinje-SVG: 27° lutning med takstolar -->
+    <div class="hero-roof" aria-hidden="true">
+      <svg viewBox="0 0 520 330" xmlns="http://www.w3.org/2000/svg" role="img">
+        <!-- Taklinjer 27° -->
+        <path d="M20 300 L260 60 L500 300" fill="none" stroke="var(--timber)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M70 300 L260 110 L450 300" fill="none" stroke="rgba(201,143,69,.55)" stroke-width="2.5" />
+        <path d="M120 300 L260 160 L400 300" fill="none" stroke="rgba(201,143,69,.35)" stroke-width="2" />
+        <!-- Takstolar -->
+        <line x1="260" y1="60" x2="260" y2="300" stroke="rgba(247,245,240,.22)" stroke-width="2" />
+        <line x1="140" y1="180" x2="380" y2="180" stroke="rgba(247,245,240,.22)" stroke-width="2" />
+        <line x1="140" y1="180" x2="260" y2="300" stroke="rgba(247,245,240,.14)" stroke-width="1.5" />
+        <line x1="380" y1="180" x2="260" y2="300" stroke="rgba(247,245,240,.14)" stroke-width="1.5" />
+        <line x1="20" y1="300" x2="500" y2="300" stroke="rgba(247,245,240,.3)" stroke-width="2.5" />
+        <!-- Vinkelbåge + 27°-etikett -->
+        <path d="M80 300 A 60 60 0 0 0 66.5 253.5" fill="none" stroke="var(--timber)" stroke-width="2" />
+        <text x="96" y="272" font-family="IBM Plex Mono, monospace" font-size="19" fill="var(--timber)" font-weight="500">27°</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(160deg, var(--spruce) 0%, var(--spruce-2) 100%);
+    padding: clamp(70px, 10vw, 130px) 0 clamp(56px, 8vw, 100px);
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(32px, 5vw, 70px);
+    align-items: center;
+  }
+
+  .hero h1 {
+    color: var(--paper);
+    margin-bottom: 22px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--timber);
+  }
+
+  .hero-lead {
+    font-size: clamp(16px, 1.6vw, 19px);
+    max-width: 54ch;
+    color: rgba(247, 245, 240, .82);
+    margin-bottom: 30px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 38px;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 34px;
+    list-style: none;
+    margin: 0;
+    padding: 22px 0 0;
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .hero-meta li {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: rgba(247, 245, 240, .68);
+  }
+
+  .hero-meta strong {
+    color: var(--timber);
+    font-weight: 500;
+  }
+
+  .hero-roof svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (max-width: 860px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-roof {
+      max-width: 420px;
+    }
+  }
+</style>

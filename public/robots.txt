@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.dtcsundsvall.se/sitemap-index.xml

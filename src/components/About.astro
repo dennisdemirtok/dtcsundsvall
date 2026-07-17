@@ -1,0 +1,94 @@
+---
+---
+
+<section class="section section-alt" id="om-oss">
+  <div class="wrap about-inner">
+    <div>
+      <span class="eyebrow">Om oss</span>
+      <h2>Hantverk med bas i Njurunda</h2>
+      <p>
+        DTC Sundsvall AB är en lokal byggfirma med bas i Njurunda, strax söder om Sundsvall.
+        Vi arbetar med allt från takbyten och tillbyggnader till finsnickeri — alltid med
+        samma inställning: det vi bygger ska hålla, i decennier och i norrländskt väder.
+      </p>
+      <p>
+        Vi tar helhetsansvar för våra projekt. Det betyder en kontaktperson, en fast offert
+        och ett tydligt åtagande — inga överraskningar på fakturan och inga lösa trådar
+        vid slutbesiktningen.
+      </p>
+      <a class="btn btn-dark" href="/om-oss/">Mer om DTC Sundsvall</a>
+    </div>
+    <ul class="about-facts">
+      <li>
+        <span class="dim-label">F-SKATT</span>
+        <strong>Godkänd för F-skatt</strong>
+        <span>och fullt försäkrade i alla uppdrag</span>
+      </li>
+      <li>
+        <span class="dim-label">ROT 50 000</span>
+        <strong>ROT-avdrag på arbetet</strong>
+        <span>vi sköter administrationen mot Skatteverket</span>
+      </li>
+      <li>
+        <span class="dim-label">SUNDSVALL ±5 MIL</span>
+        <strong>Lokalt verksamma</strong>
+        <span>Njurunda, Sundsvall, Matfors, Alnö, Timrå</span>
+      </li>
+      <li>
+        <span class="dim-label">OFFERT &lt; 24 H</span>
+        <strong>Svar inom en arbetsdag</strong>
+        <span>kostnadsfri besiktning och fast pris</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .about-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(32px, 5vw, 70px);
+    align-items: start;
+  }
+
+  .about-inner p {
+    color: var(--ink-soft);
+    max-width: 58ch;
+  }
+
+  .about-inner .btn {
+    margin-top: 10px;
+  }
+
+  .about-facts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+
+  .about-facts li {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    display: grid;
+    gap: 2px;
+  }
+
+  .about-facts strong {
+    font-size: 16px;
+  }
+
+  .about-facts li > span:last-child {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 860px) {
+    .about-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

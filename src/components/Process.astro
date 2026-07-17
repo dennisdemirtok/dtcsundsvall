@@ -1,0 +1,91 @@
+---
+const steps = [
+  {
+    n: '01',
+    title: 'Kontakt & besiktning',
+    text: 'Du hör av dig via formuläret eller telefon. Vi bokar en kostnadsfri besiktning på plats och går igenom vad du vill få gjort.',
+  },
+  {
+    n: '02',
+    title: 'Fast offert',
+    text: 'Inom en arbetsdag efter besiktningen får du en tydlig, fast offert — med material, tidsplan och ROT-avdrag specificerat.',
+  },
+  {
+    n: '03',
+    title: 'Genomförande',
+    text: 'Vi bygger enligt plan, håller arbetsplatsen städad och stämmer av löpande. En kontaktperson genom hela projektet.',
+  },
+  {
+    n: '04',
+    title: 'Slutbesiktning & garanti',
+    text: 'Vi går igenom resultatet tillsammans, åtgärdar eventuella anmärkningar och lämnar garantier enligt konsumenttjänstlagen.',
+  },
+];
+---
+
+<section class="section section-dark" id="process">
+  <div class="wrap">
+    <span class="eyebrow">Så jobbar vi</span>
+    <h2>Från offert till slutbesiktning</h2>
+    <ol class="process-grid">
+      {steps.map((s) => (
+        <li>
+          <span class="step-n" aria-hidden="true">{s.n}</span>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    list-style: none;
+    margin: 40px 0 0;
+    padding: 0;
+    counter-reset: step;
+  }
+
+  .process-grid li {
+    border: 1px solid var(--line-dark);
+    border-radius: var(--radius);
+    padding: 24px;
+    background: rgba(247, 245, 240, .03);
+  }
+
+  .step-n {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: .14em;
+    color: var(--timber);
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .process-grid h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .process-grid p {
+    font-size: 14.5px;
+    color: rgba(247, 245, 240, .68);
+    margin: 0;
+  }
+
+  @media (max-width: 960px) {
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 620px) {
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

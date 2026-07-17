@@ -1,0 +1,111 @@
+---
+const areas = [
+  'Sundsvall',
+  'Njurunda',
+  'Kvissleby',
+  'Matfors',
+  'Timrå',
+  'Alnö',
+  'Stöde',
+  'Söråker',
+];
+---
+
+<section class="section" id="omrade">
+  <div class="wrap area-inner">
+    <div>
+      <span class="eyebrow">Verksamhetsområde</span>
+      <h2>Vi jobbar i hela Sundsvallsområdet</h2>
+      <p class="area-lead">
+        Med bas i Njurunda når vi snabbt ut i hela kommunen och närliggande orter.
+        Kör vi längre? Hör av dig — större projekt tar vi i hela Västernorrland.
+      </p>
+      <ul class="area-list">
+        {areas.map((a) => <li>{a}</li>)}
+      </ul>
+    </div>
+
+    <aside class="rot-card">
+      <span class="dim-label">ROT-AVDRAG</span>
+      <h3>50 000 kr per person och år</h3>
+      <p>
+        Som privatperson får du dra av 50&nbsp;% av arbetskostnaden, upp till
+        50&nbsp;000&nbsp;kr per person och år. Vi sköter hela administrationen mot
+        Skatteverket — du betalar bara nettobeloppet på fakturan.
+      </p>
+      <p class="rot-note">
+        Gäller villor, radhus och fritidshus som är minst fem år gamla och som du äger.
+      </p>
+      <a class="btn btn-primary" href="/kontakt/">Räkna på ditt projekt</a>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .area-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(32px, 5vw, 70px);
+    align-items: start;
+  }
+
+  .area-lead {
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin-bottom: 28px;
+  }
+
+  .area-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 220px));
+    gap: 10px 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .area-list li {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: .06em;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper-2);
+  }
+
+  .rot-card {
+    background: var(--spruce);
+    color: rgba(247, 245, 240, .82);
+    border-radius: var(--radius);
+    padding: 32px;
+  }
+
+  .rot-card .dim-label {
+    color: var(--timber);
+  }
+
+  .rot-card h3 {
+    color: var(--paper);
+    margin: 10px 0 14px;
+  }
+
+  .rot-card p {
+    font-size: 15px;
+  }
+
+  .rot-note {
+    font-size: 13.5px !important;
+    color: rgba(247, 245, 240, .6);
+  }
+
+  .rot-card .btn {
+    margin-top: 8px;
+  }
+
+  @media (max-width: 860px) {
+    .area-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

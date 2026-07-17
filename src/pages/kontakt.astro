@@ -1,0 +1,193 @@
+---
+import Base from '../layouts/Base.astro';
+import Ruler from '../components/Ruler.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<Base
+  title="Kontakt & offert — byggfirma i Sundsvall | DTC Sundsvall AB"
+  description="Kontakta DTC Sundsvall AB för kostnadsfri offert på tak, bygg, renovering eller snickeri i Sundsvallsområdet. Vi svarar inom en arbetsdag."
+  path="/kontakt/"
+  breadcrumbs={[
+    { name: 'Hem', url: '/' },
+    { name: 'Kontakt', url: '/kontakt/' },
+  ]}
+>
+  <section class="page-hero section-dark">
+    <div class="wrap">
+      <span class="eyebrow">Kontakt</span>
+      <h1>Begär kostnadsfri offert</h1>
+    </div>
+  </section>
+  <Ruler tone="dark" />
+
+  <section class="section">
+    <div class="wrap contact-grid">
+      <div class="form-col">
+        <p class="contact-lead">
+          Beskriv ditt projekt så hör vi av oss inom en arbetsdag med besiktningstid och
+          fast pris. Offerten är alltid kostnadsfri och du binder dig inte till något.
+        </p>
+        <ContactForm />
+      </div>
+
+      <aside class="nap-col">
+        <!-- NAP — måste matcha Google Business Profile exakt -->
+        <div class="nap-card">
+          <span class="dim-label">KONTAKTUPPGIFTER</span>
+          <h2 class="nap-name">DTC Sundsvall AB</h2>
+          <address>
+            Njurunda, Sundsvall<br />
+            Västernorrland
+          </address>
+          <ul class="nap-list">
+            <li>
+              <span>Telefon</span>
+              <a href="tel:+4660000000">060-00 00 00</a>
+            </li>
+            <li>
+              <span>E-post</span>
+              <a href="mailto:info@dtcsundsvall.se">info@dtcsundsvall.se</a>
+            </li>
+            <li>
+              <span>Öppettider</span>
+              Mån–fre 07–16
+            </li>
+          </ul>
+        </div>
+
+        <div class="nap-card nap-dark">
+          <span class="dim-label">BRA ATT VETA</span>
+          <ul class="know-list">
+            <li>Kostnadsfri besiktning och offert</li>
+            <li>Svar inom en arbetsdag</li>
+            <li>ROT-avdrag dras direkt på fakturan</li>
+            <li>F-skatt &amp; försäkrade</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero {
+    padding: clamp(48px, 7vw, 80px) 0 clamp(40px, 6vw, 64px);
+    background: linear-gradient(160deg, var(--spruce) 0%, var(--spruce-2) 100%);
+  }
+
+  .page-hero h1 {
+    color: var(--paper);
+    font-size: clamp(34px, 5.5vw, 64px);
+    margin: 0;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(32px, 5vw, 70px);
+    align-items: start;
+  }
+
+  .contact-lead {
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin-bottom: 32px;
+  }
+
+  .nap-col {
+    display: grid;
+    gap: 18px;
+  }
+
+  .nap-card {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+  }
+
+  .nap-name {
+    font-size: 22px;
+    margin: 10px 0 8px;
+  }
+
+  address {
+    font-style: normal;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+
+  .nap-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  .nap-list li {
+    display: grid;
+    gap: 1px;
+  }
+
+  .nap-list span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .nap-list a {
+    color: var(--timber-deep);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .nap-list a:hover {
+    text-decoration: underline;
+  }
+
+  .nap-dark {
+    background: var(--spruce);
+    border-color: var(--spruce);
+    color: rgba(247, 245, 240, .82);
+  }
+
+  .nap-dark .dim-label {
+    color: var(--timber);
+  }
+
+  .know-list {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 9px;
+    font-size: 14.5px;
+  }
+
+  .know-list li {
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .know-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 11px;
+    height: 6px;
+    border-left: 2px solid var(--timber);
+    border-bottom: 2px solid var(--timber);
+    transform: rotate(-45deg);
+  }
+
+  @media (max-width: 860px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

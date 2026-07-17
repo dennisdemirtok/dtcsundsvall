@@ -1,0 +1,185 @@
+---
+import { services } from '../data/services';
+---
+
+<form class="contact-form" id="contact-form" novalidate>
+  <div class="form-grid">
+    <div class="field">
+      <label for="cf-name">Namn *</label>
+      <input type="text" id="cf-name" name="name" required autocomplete="name" />
+      <p class="field-error" id="cf-name-error" aria-live="polite"></p>
+    </div>
+    <div class="field">
+      <label for="cf-phone">Telefon *</label>
+      <input type="tel" id="cf-phone" name="phone" required autocomplete="tel" />
+      <p class="field-error" id="cf-phone-error" aria-live="polite"></p>
+    </div>
+    <div class="field">
+      <label for="cf-email">E-post *</label>
+      <input type="email" id="cf-email" name="email" required autocomplete="email" />
+      <p class="field-error" id="cf-email-error" aria-live="polite"></p>
+    </div>
+    <div class="field">
+      <label for="cf-type">Typ av projekt</label>
+      <select id="cf-type" name="type">
+        <option value="">Välj typ av projekt</option>
+        {services.map((s) => <option value={s.title}>{s.title}</option>)}
+        <option value="Annat">Annat</option>
+      </select>
+    </div>
+    <div class="field field-full">
+      <label for="cf-message">Beskriv ditt projekt</label>
+      <textarea id="cf-message" name="message" rows="6" maxlength="5000"></textarea>
+    </div>
+    <!-- Honeypot — lämnas tomt av människor -->
+    <div class="hp-field" aria-hidden="true">
+      <label for="cf-company">Företag</label>
+      <input type="text" id="cf-company" name="company" tabindex="-1" autocomplete="off" />
+    </div>
+  </div>
+
+  <p class="form-consent">
+    Genom att skicka godkänner du att vi behandlar dina uppgifter för att besvara din
+    förfrågan. Läs mer i vår <a href="/integritetspolicy/">integritetspolicy</a>.
+  </p>
+
+  <button class="btn btn-primary" type="submit" id="cf-submit">Skicka förfrågan</button>
+
+  <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+</form>
+
+<style>
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .field-full {
+    grid-column: 1 / -1;
+  }
+
+  .field-error {
+    font-size: 13px;
+    color: #A03123;
+    margin: 5px 0 0;
+    min-height: 0;
+  }
+
+  .field-error:empty {
+    display: none;
+  }
+
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .form-consent {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin: 18px 0;
+    max-width: 60ch;
+  }
+
+  .form-consent a {
+    color: var(--timber-deep);
+  }
+
+  .form-status {
+    margin-top: 16px;
+    font-weight: 500;
+  }
+
+  .form-status.ok {
+    color: var(--pine);
+  }
+
+  .form-status.err {
+    color: #A03123;
+  }
+
+  @media (max-width: 620px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('cf-status');
+  const submitBtn = document.getElementById('cf-submit') as HTMLButtonElement | null;
+
+  const setError = (id: string, msg: string) => {
+    const el = document.getElementById(`${id}-error`);
+    const input = document.getElementById(id);
+    if (el) el.textContent = msg;
+    if (input) {
+      if (msg) {
+        input.setAttribute('aria-invalid', 'true');
+        input.setAttribute('aria-describedby', `${id}-error`);
+      } else {
+        input.removeAttribute('aria-invalid');
+      }
+    }
+  };
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!status || !submitBtn) return;
+
+    const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+
+    let valid = true;
+    setError('cf-name', '');
+    setError('cf-phone', '');
+    setError('cf-email', '');
+
+    if (!data.name?.trim()) {
+      setError('cf-name', 'Ange ditt namn.');
+      valid = false;
+    }
+    if (!data.phone?.trim()) {
+      setError('cf-phone', 'Ange ditt telefonnummer.');
+      valid = false;
+    }
+    if (!data.email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      setError('cf-email', 'Ange en giltig e-postadress.');
+      valid = false;
+    }
+    if (!valid) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Skickar…';
+    status.textContent = '';
+    status.className = 'form-status';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+
+      if (res.ok && json.ok) {
+        status.textContent = 'Tack! Vi hör av oss inom en arbetsdag.';
+        status.classList.add('ok');
+        form.reset();
+      } else {
+        throw new Error(json.error || 'Något gick fel');
+      }
+    } catch {
+      status.textContent =
+        'Något gick fel när förfrågan skulle skickas. Försök igen, eller ring oss direkt så hjälper vi dig.';
+      status.classList.add('err');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Skicka förfrågan';
+    }
+  });
+</script>

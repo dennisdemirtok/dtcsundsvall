@@ -1,0 +1,58 @@
+---
+interface Props {
+  dim: string;
+  title: string;
+  excerpt: string;
+  href: string;
+  linkLabel: string;
+}
+
+const { dim, title, excerpt, href, linkLabel } = Astro.props;
+---
+
+<article class="card service-card">
+  <span class="dim-label">{dim}</span>
+  <h3><a href={href}>{title}</a></h3>
+  <p>{excerpt}</p>
+  <a class="card-link" href={href}>{linkLabel}</a>
+</article>
+
+<style>
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .service-card h3 {
+    margin: 2px 0 0;
+  }
+
+  .service-card h3 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .service-card h3 a:hover {
+    color: var(--timber-deep);
+  }
+
+  .service-card p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .card-link {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--timber-deep);
+    text-decoration: none;
+    margin-top: 6px;
+  }
+
+  .card-link:hover {
+    text-decoration: underline;
+  }
+</style>

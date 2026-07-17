@@ -1,0 +1,154 @@
+---
+import Base from '../layouts/Base.astro';
+import Ruler from '../components/Ruler.astro';
+---
+
+<Base
+  title="Om oss — byggfirma i Njurunda & Sundsvall | DTC Sundsvall AB"
+  description="DTC Sundsvall AB är en lokal byggfirma i Njurunda med helhetsansvar för tak, bygg, renovering och snickeri. F-skatt, försäkrade och ROT-avdrag."
+  path="/om-oss/"
+  breadcrumbs={[
+    { name: 'Hem', url: '/' },
+    { name: 'Om oss', url: '/om-oss/' },
+  ]}
+>
+  <section class="page-hero section-dark">
+    <div class="wrap">
+      <span class="eyebrow">Om oss</span>
+      <h1>Byggfirman från Njurunda</h1>
+    </div>
+  </section>
+  <Ruler tone="dark" />
+
+  <section class="section">
+    <div class="wrap about-grid">
+      <div>
+        <p>
+          DTC Sundsvall AB är en lokal byggfirma med bas i Njurunda, strax söder om
+          Sundsvall. Vi arbetar med takläggning, byggnation, renovering, snickeri och
+          löpande fastighetsunderhåll — för privatpersoner, bostadsrättsföreningar och
+          företag i hela Sundsvallsområdet.
+        </p>
+        <p>
+          Vår filosofi är enkel: det vi bygger ska hålla. I norrländskt klimat betyder det
+          rätt dimensioner, rätt material och rätt utförande — inga genvägar. Snölast,
+          temperaturväxlingar och fukt är inte teori för oss, det är vardagen våra
+          konstruktioner ska klara i decennier.
+        </p>
+        <p>
+          Vi tar helhetsansvar för våra projekt. Du får en kontaktperson, en fast offert
+          och en tydlig tidsplan. Behövs el, VVS eller mark samordnar vi behöriga
+          samarbetspartners, så att du bara har ett avtal och en faktura att hålla
+          reda på.
+        </p>
+        <h2>Trygghet i varje uppdrag</h2>
+        <ul class="trust-list">
+          <li>Godkända för F-skatt och fullt försäkrade i alla uppdrag</li>
+          <li>ROT-avdrag — vi sköter administrationen mot Skatteverket</li>
+          <li>Fast offert och skriftligt avtal före byggstart</li>
+          <li>Garantier enligt konsumenttjänstlagen</li>
+        </ul>
+      </div>
+      <aside class="about-cta">
+        <span class="dim-label">KONTAKT</span>
+        <h3>Prata med oss</h3>
+        <p>
+          Funderar du på ett projekt? Hör av dig så tar vi ett förutsättningslöst samtal
+          om vad du vill få gjort.
+        </p>
+        <a class="btn btn-primary" href="/kontakt/">Begär kostnadsfri offert</a>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero {
+    padding: clamp(48px, 7vw, 80px) 0 clamp(40px, 6vw, 64px);
+    background: linear-gradient(160deg, var(--spruce) 0%, var(--spruce-2) 100%);
+  }
+
+  .page-hero h1 {
+    color: var(--paper);
+    font-size: clamp(34px, 5.5vw, 64px);
+    margin: 0;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    gap: clamp(32px, 5vw, 70px);
+    align-items: start;
+  }
+
+  .about-grid p {
+    color: var(--ink-soft);
+    max-width: 66ch;
+  }
+
+  .about-grid h2 {
+    font-size: clamp(22px, 2.6vw, 30px);
+    margin-top: 40px;
+  }
+
+  .trust-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    max-width: 62ch;
+  }
+
+  .trust-list li {
+    padding: 13px 16px 13px 42px;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    position: relative;
+  }
+
+  .trust-list li::before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    width: 13px;
+    height: 8px;
+    border-left: 2.5px solid var(--timber-deep);
+    border-bottom: 2.5px solid var(--timber-deep);
+    transform: translateY(-70%) rotate(-45deg);
+  }
+
+  .about-cta {
+    background: var(--spruce);
+    color: rgba(247, 245, 240, .82);
+    border-radius: var(--radius);
+    padding: 30px;
+    position: sticky;
+    top: 90px;
+  }
+
+  .about-cta .dim-label {
+    color: var(--timber);
+  }
+
+  .about-cta h3 {
+    color: var(--paper);
+    margin: 10px 0 12px;
+  }
+
+  .about-cta p {
+    font-size: 15px;
+  }
+
+  @media (max-width: 860px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-cta {
+      position: static;
+    }
+  }
+</style>

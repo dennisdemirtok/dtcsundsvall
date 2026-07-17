@@ -1,0 +1,95 @@
+---
+interface Breadcrumb {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  breadcrumbs?: Breadcrumb[];
+  /** Extra JSON-LD-block (t.ex. Service, FAQPage) */
+  jsonLd?: object[];
+}
+
+const { title, description, path, breadcrumbs, jsonLd = [] } = Astro.props;
+
+const site = (Astro.site ?? new URL('https://www.dtcsundsvall.se')).href.replace(/\/$/, '');
+const canonical = `${site}${path === '/' ? '/' : path.replace(/\/?$/, '/')}`;
+
+// OBS: fyll i riktiga uppgifter före lansering (telefon, adress, org.nr)
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'GeneralContractor',
+  '@id': `${site}/#business`,
+  name: 'DTC Sundsvall AB',
+  url: `${site}/`,
+  telephone: '+46-60-000000',
+  email: 'info@dtcsundsvall.se',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Njurunda',
+    addressRegion: 'Västernorrland',
+    addressCountry: 'SE',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 62.2833,
+    longitude: 17.3667,
+  },
+  areaServed: [
+    'Sundsvall',
+    'Njurunda',
+    'Kvissleby',
+    'Matfors',
+    'Timrå',
+    'Alnö',
+    'Stöde',
+    'Söråker',
+  ].map((name) => ({ '@type': 'Place', name })),
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '07:00',
+      closes: '16:00',
+    },
+  ],
+  priceRange: '$$',
+};
+
+const blocks: object[] = [business, ...jsonLd];
+
+if (breadcrumbs && breadcrumbs.length > 0) {
+  blocks.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((b, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: b.name,
+      item: `${site}${b.url}`,
+    })),
+  });
+}
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="DTC Sundsvall AB" />
+<meta property="og:locale" content="sv_SE" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+
+{blocks.map((block) => (
+  <script type="application/ld+json" set:html={JSON.stringify(block)} />
+))}

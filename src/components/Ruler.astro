@@ -1,0 +1,50 @@
+---
+interface Props {
+  /** 'light' på ljus bakgrund, 'dark' på mörk */
+  tone?: 'light' | 'dark';
+}
+
+const { tone = 'light' } = Astro.props;
+---
+
+<div class={`ruler ruler-${tone}`} aria-hidden="true"></div>
+
+<style>
+  /* Måttbands-divider — repeterande streck som en tumstock */
+  .ruler {
+    height: 26px;
+    background-image:
+      repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent 9px,
+        var(--ruler-tick) 9px,
+        var(--ruler-tick) 10px
+      ),
+      repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent 49px,
+        var(--ruler-tick-major) 49px,
+        var(--ruler-tick-major) 51px
+      );
+    background-size: 50px 12px, 250px 100%;
+    background-repeat: repeat-x;
+    background-position: 0 bottom, 0 0;
+    border-bottom: 2px solid var(--ruler-base);
+  }
+
+  .ruler-light {
+    --ruler-tick: rgba(26, 33, 28, .28);
+    --ruler-tick-major: rgba(169, 113, 47, .65);
+    --ruler-base: var(--line);
+    background-color: var(--paper-2);
+  }
+
+  .ruler-dark {
+    --ruler-tick: rgba(247, 245, 240, .22);
+    --ruler-tick-major: rgba(201, 143, 69, .8);
+    --ruler-base: var(--line-dark);
+    background-color: var(--spruce-2);
+  }
+</style>

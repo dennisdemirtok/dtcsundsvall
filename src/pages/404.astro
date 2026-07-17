@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import { services } from '../data/services';
+---
+
+<Base
+  title="Sidan hittades inte | DTC Sundsvall AB"
+  description="Sidan du letade efter finns inte. Hitta våra tjänster inom tak, bygg, renovering och snickeri i Sundsvall, eller kontakta oss för offert."
+  path="/404/"
+>
+  <section class="section nf">
+    <div class="wrap">
+      <span class="dim-label">FEL 404</span>
+      <h1>Sidan hittades inte</h1>
+      <p class="nf-lead">
+        Sidan du letade efter verkar vara riven — men huset står kvar. Här är några
+        vägar vidare:
+      </p>
+      <ul class="nf-links">
+        {services.map((s) => (
+          <li><a href={`/tjanster/${s.slug}/`}>{s.title}</a></li>
+        ))}
+      </ul>
+      <div class="nf-actions">
+        <a class="btn btn-primary" href="/kontakt/">Begär offert</a>
+        <a class="btn btn-dark" href="/">Till startsidan</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    min-height: 55vh;
+  }
+
+  .nf h1 {
+    font-size: clamp(38px, 6vw, 72px);
+    margin-top: 10px;
+  }
+
+  .nf-lead {
+    color: var(--ink-soft);
+    max-width: 48ch;
+    margin-bottom: 28px;
+  }
+
+  .nf-links {
+    list-style: none;
+    margin: 0 0 34px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .nf-links a {
+    display: inline-block;
+    padding: 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper-2);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  .nf-links a:hover {
+    border-color: var(--timber);
+    color: var(--timber-deep);
+  }
+
+  .nf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+</style>
