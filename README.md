@@ -40,7 +40,8 @@ kontoägarens egen e-post — bra för test, inte för produktion.)
 
 ## Före lansering
 
-Sök på `000000` och `060-00 00 00` i koden — telefonnummer, org.nr och adress är
-platshållare som måste ersättas med riktiga uppgifter (Footer, kontaktsidan,
-integritetspolicyn och `Seo.astro`). NAP-uppgifterna måste matcha Google Business
-Profile exakt. Full checklista i [CLAUDE.md](CLAUDE.md) §6.4 och §12.
+Telefonnumret `060-00 00 00` är fortfarande platshållare — sök på `060-00 00 00`
+och `+4660000000` i koden och ersätt (Footer, kontaktsidan, startsidans CTA,
+integritetspolicyn och `Seo.astro`). Org.nr (559145-2353) och adress
+(Vikarbodarna 140, 862 96 Njurunda) är ifyllda. NAP-uppgifterna måste matcha
+Google Business Profile exakt. Full checklista i [CLAUDE.md](CLAUDE.md) §6.4 och §12.

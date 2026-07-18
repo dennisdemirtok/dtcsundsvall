@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Ruler from '../components/Ruler.astro';
+import handrePaTaket from '../assets/projekt/takrenovering-rivning.jpg';
 ---
 
 <Base
@@ -30,6 +32,12 @@ import Ruler from '../components/Ruler.astro';
           företag i hela Sundsvallsområdet.
         </p>
         <p>
+          Företaget ägs och drivs av <strong>Handre Sander</strong> (f. 1979) — en
+          hantverkare som hellre sitter på taket än på kontoret. Som VD är han med i
+          varje projekt, från första besiktningen till sista plåten, och det är också
+          honom du har kontakt med genom hela bygget.
+        </p>
+        <p>
           Vår filosofi är enkel: det vi bygger ska hålla. I norrländskt klimat betyder det
           rätt dimensioner, rätt material och rätt utförande — inga genvägar. Snölast,
           temperaturväxlingar och fukt är inte teori för oss, det är vardagen våra
@@ -41,6 +49,11 @@ import Ruler from '../components/Ruler.astro';
           samarbetspartners, så att du bara har ett avtal och en faktura att hålla
           reda på.
         </p>
+        <p>
+          Basen finns på Vikarbodarna i Njurunda och de flesta uppdragen gör vi i
+          Sundsvallsområdet — men vi arbetar i hela Västernorrland, på senare tid
+          bland annat i Sollefteå.
+        </p>
         <h2>Trygghet i varje uppdrag</h2>
         <ul class="trust-list">
           <li>Godkända för F-skatt och fullt försäkrade i alla uppdrag</li>
@@ -49,14 +62,34 @@ import Ruler from '../components/Ruler.astro';
           <li>Garantier enligt konsumenttjänstlagen</li>
         </ul>
       </div>
-      <aside class="about-cta">
-        <span class="dim-label">KONTAKT</span>
+      <aside class="about-aside">
+        <figure class="founder-card">
+          <div class="founder-media">
+            <Image
+              src={handrePaTaket}
+              alt="Handre Sander, ägare och VD för DTC Sundsvall AB, under takrenovering på ett äldre hus"
+              width={760}
+              widths={[420, 760]}
+              sizes="(max-width: 860px) 92vw, 380px"
+              loading="eager"
+            />
+          </div>
+          <figcaption>
+            <span class="dim-label">ÄGARE &amp; VD</span>
+            <strong>Handre Sander</strong>
+            <span class="founder-note">— oftast på taket, inte på kontoret</span>
+          </figcaption>
+        </figure>
+
+        <div class="about-cta">
+          <span class="dim-label">KONTAKT</span>
         <h3>Prata med oss</h3>
         <p>
           Funderar du på ett projekt? Hör av dig så tar vi ett förutsättningslöst samtal
           om vad du vill få gjort.
         </p>
-        <a class="btn btn-primary" href="/kontakt/">Begär kostnadsfri offert</a>
+          <a class="btn btn-primary" href="/kontakt/">Begär kostnadsfri offert</a>
+        </div>
       </aside>
     </div>
   </section>
@@ -120,13 +153,53 @@ import Ruler from '../components/Ruler.astro';
     transform: translateY(-70%) rotate(-45deg);
   }
 
+  .about-aside {
+    display: grid;
+    gap: 18px;
+    position: sticky;
+    top: 90px;
+  }
+
+  .founder-card {
+    margin: 0;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .founder-media {
+    aspect-ratio: 4 / 4.6;
+    overflow: hidden;
+  }
+
+  .founder-media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .founder-card figcaption {
+    padding: 16px 22px 18px;
+    display: grid;
+    gap: 2px;
+  }
+
+  .founder-card strong {
+    font-size: 17px;
+  }
+
+  .founder-note {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+
   .about-cta {
     background: var(--spruce);
     color: rgba(247, 245, 240, .82);
     border-radius: var(--radius);
     padding: 30px;
-    position: sticky;
-    top: 90px;
   }
 
   .about-cta .dim-label {
@@ -147,7 +220,7 @@ import Ruler from '../components/Ruler.astro';
       grid-template-columns: 1fr;
     }
 
-    .about-cta {
+    .about-aside {
       position: static;
     }
   }

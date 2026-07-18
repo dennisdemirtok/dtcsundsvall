@@ -18,7 +18,7 @@ const { title, description, path, breadcrumbs, jsonLd = [] } = Astro.props;
 const site = (Astro.site ?? new URL('https://www.dtcsundsvall.se')).href.replace(/\/$/, '');
 const canonical = `${site}${path === '/' ? '/' : path.replace(/\/?$/, '/')}`;
 
-// OBS: fyll i riktiga uppgifter före lansering (telefon, adress, org.nr)
+// OBS: fyll i riktigt telefonnummer före lansering
 const business = {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
@@ -27,8 +27,17 @@ const business = {
   url: `${site}/`,
   telephone: '+46-60-000000',
   email: 'info@dtcsundsvall.se',
+  vatID: 'SE559145235301',
+  taxID: '559145-2353',
+  founder: {
+    '@type': 'Person',
+    name: 'Handre Sander',
+    jobTitle: 'Ägare & VD',
+  },
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'Vikarbodarna 140',
+    postalCode: '862 96',
     addressLocality: 'Njurunda',
     addressRegion: 'Västernorrland',
     addressCountry: 'SE',
@@ -47,6 +56,8 @@ const business = {
     'Alnö',
     'Stöde',
     'Söråker',
+    'Sollefteå',
+    'Västernorrland',
   ].map((name) => ({ '@type': 'Place', name })),
   openingHoursSpecification: [
     {
