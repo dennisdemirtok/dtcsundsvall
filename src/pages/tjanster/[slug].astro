@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Ruler from '../../components/Ruler.astro';
 import ContactForm from '../../components/ContactForm.astro';
@@ -75,6 +76,26 @@ const breadcrumbs = [
         <ul class="service-items">
           {service.items.map((item) => <li>{item}</li>)}
         </ul>
+
+        {service.images.length > 0 && (
+          <>
+            <h2>Från våra projekt</h2>
+            <div class="service-gallery" class:list={{ 'two-up': service.images.length === 2 }}>
+              {service.images.map((img) => (
+                <div class="gallery-item">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={760}
+                    widths={[420, 760]}
+                    sizes="(max-width: 620px) 92vw, 400px"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       <aside class="service-aside">
@@ -217,6 +238,42 @@ const breadcrumbs = [
     border-left: 2.5px solid var(--timber-deep);
     border-bottom: 2.5px solid var(--timber-deep);
     transform: translateY(-70%) rotate(-45deg);
+  }
+
+  .service-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    max-width: 720px;
+  }
+
+  .service-gallery.two-up {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-item {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+  }
+
+  .gallery-item :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: 620px) {
+    .service-gallery,
+    .service-gallery.two-up {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery-item {
+      aspect-ratio: 4 / 3;
+    }
   }
 
   .service-aside {

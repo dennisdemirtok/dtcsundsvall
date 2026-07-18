@@ -1,3 +1,28 @@
+import type { ImageMetadata } from 'astro';
+
+import verandaStomme from '../assets/projekt/veranda-stomme.jpg';
+import garageTakstolar from '../assets/projekt/garage-takstolar.jpg';
+import plattakGarage from '../assets/projekt/plattak-garage.jpg';
+import pooltakSjoutsikt from '../assets/projekt/pooltak-sjoutsikt.jpg';
+import pooltakNarbild from '../assets/projekt/pooltak-narbild.jpg';
+import kokRenovering from '../assets/projekt/kok-renovering.jpg';
+import kokRenovering2 from '../assets/projekt/kok-renovering-2.jpg';
+import poolTradackPanorama from '../assets/projekt/pool-tradack-panorama.jpg';
+import poolTradack from '../assets/projekt/pool-tradack.jpg';
+import tradackPool from '../assets/projekt/tradack-pool.jpg';
+import plattakVinter from '../assets/projekt/plattak-vinter.jpg';
+import inglasatUterum from '../assets/projekt/inglasat-uterum.jpg';
+import verandaKvall from '../assets/projekt/veranda-kvall.jpg';
+import inglasadVeranda from '../assets/projekt/inglasad-veranda.jpg';
+import takbyteStallning from '../assets/projekt/takbyte-stallning.jpg';
+import fasadStallning from '../assets/projekt/fasad-stallning.jpg';
+import takrenoveringRivning from '../assets/projekt/takrenovering-rivning.jpg';
+
+export interface ProjectImage {
+  src: ImageMetadata;
+  alt: string;
+}
+
 export interface FaqItem {
   q: string;
   a: string;
@@ -23,6 +48,8 @@ export interface Service {
   faq: FaqItem[];
   /** Slugs till två relaterade tjänster */
   related: [string, string];
+  /** Bilder från riktiga projekt */
+  images: ProjectImage[];
 }
 
 export const services: Service[] = [
@@ -67,6 +94,20 @@ export const services: Service[] = [
       },
     ],
     related: ['byggnation', 'underhall'],
+    images: [
+      {
+        src: plattakGarage,
+        alt: 'Färdigt svart bandtäckt plåttak med snörasskydd på garage i Sundsvall',
+      },
+      {
+        src: plattakVinter,
+        alt: 'Nylagt mörkgrått plåttak monterat vintertid med byggställning runt huset',
+      },
+      {
+        src: takrenoveringRivning,
+        alt: 'Snickare river gammalt plåttak inför takbyte på äldre hus',
+      },
+    ],
   },
   {
     slug: 'byggnation',
@@ -105,6 +146,20 @@ export const services: Service[] = [
       },
     ],
     related: ['renovering', 'snickeri'],
+    images: [
+      {
+        src: verandaStomme,
+        alt: 'Stomresning av ny veranda med takstolar på villa i Sundsvallsområdet',
+      },
+      {
+        src: inglasatUterum,
+        alt: 'Färdigbyggt inglasat uterum med sadeltak och trädäck på villa',
+      },
+      {
+        src: verandaKvall,
+        alt: 'Färdig veranda med tegeltak och infälld belysning i kvällsljus',
+      },
+    ],
   },
   {
     slug: 'renovering',
@@ -143,6 +198,16 @@ export const services: Service[] = [
       },
     ],
     related: ['snickeri', 'byggnation'],
+    images: [
+      {
+        src: kokRenovering,
+        alt: 'Nyrenoverat kök med gröna luckor, köksö och ribbpanel i trä',
+      },
+      {
+        src: kokRenovering2,
+        alt: 'Platsbyggd köksinredning med gröna skåpluckor och svart blandare',
+      },
+    ],
   },
   {
     slug: 'snickeri',
@@ -181,6 +246,20 @@ export const services: Service[] = [
       },
     ],
     related: ['renovering', 'underhall'],
+    images: [
+      {
+        src: tradackPool,
+        alt: 'Nybyggt trädäck i tryckimpregnerat trä runt pool vid villa',
+      },
+      {
+        src: poolTradackPanorama,
+        alt: 'Stort trädäck med pool och pooltak med utsikt över sjön',
+      },
+      {
+        src: pooltakSjoutsikt,
+        alt: 'Skjutbart pooltak på platsbyggt trädäck vid sjötomt',
+      },
+    ],
   },
   {
     slug: 'underhall',
@@ -219,6 +298,16 @@ export const services: Service[] = [
       },
     ],
     related: ['taklaggning', 'snickeri'],
+    images: [
+      {
+        src: fasadStallning,
+        alt: 'Byggställning rest längs grönmålad träfasad inför fasadarbete',
+      },
+      {
+        src: garageTakstolar,
+        alt: 'Nya takbjälkar monterade vid renovering av garagetak',
+      },
+    ],
   },
   {
     slug: 'renovering-fritidshus',
@@ -257,6 +346,60 @@ export const services: Service[] = [
       },
     ],
     related: ['renovering', 'byggnation'],
+    images: [
+      {
+        src: takbyteStallning,
+        alt: 'Äldre gult trähus med byggställning inför takbyte',
+      },
+      {
+        src: inglasadVeranda,
+        alt: 'Inglasad veranda med skjutpartier på fritidshus i kvällsljus',
+      },
+      {
+        src: poolTradack,
+        alt: 'Pool med trädäck och pooltak i trädgård vid blått trähus',
+      },
+    ],
+  },
+];
+
+/** Utvalda projektbilder till startsidans referensgalleri */
+export const featuredProjects: { src: ImageMetadata; alt: string; label: string; title: string }[] = [
+  {
+    src: verandaKvall,
+    alt: 'Färdig veranda med tegeltak och infälld belysning i kvällsljus',
+    label: 'BYGGNATION',
+    title: 'Veranda med tak & belysning',
+  },
+  {
+    src: plattakGarage,
+    alt: 'Färdigt svart bandtäckt plåttak med snörasskydd på garage',
+    label: 'TAK 27°',
+    title: 'Plåttak med snörasskydd',
+  },
+  {
+    src: inglasatUterum,
+    alt: 'Inglasat uterum med sadeltak och trädäck på villa',
+    label: 'INGLASNING',
+    title: 'Inglasat uterum',
+  },
+  {
+    src: kokRenovering,
+    alt: 'Nyrenoverat kök med gröna luckor, köksö och ribbpanel i trä',
+    label: 'RENOVERING',
+    title: 'Kök med platsbyggd inredning',
+  },
+  {
+    src: poolTradackPanorama,
+    alt: 'Stort trädäck med pool och pooltak med utsikt över sjön',
+    label: 'SNICKERI',
+    title: 'Trädäck & pool vid sjötomt',
+  },
+  {
+    src: plattakVinter,
+    alt: 'Nylagt mörkgrått plåttak monterat vintertid',
+    label: 'TAK · VINTER',
+    title: 'Takbyte i vinterförhållanden',
   },
 ];
 
