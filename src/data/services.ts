@@ -361,6 +361,58 @@ export const services: Service[] = [
       },
     ],
   },
+  {
+    slug: 'byggstallning',
+    dim: '200 M²',
+    title: 'Byggställning',
+    h1: 'Byggställning i Sundsvall — montering & uthyrning',
+    metaTitle: 'Byggställning Sundsvall — hyra, montering & demontering | DTC',
+    metaDescription:
+      'Hyr byggställning i Sundsvall — upp till 200 m². Vi monterar, demonterar och levererar ställning för tak-, fasad- och målningsjobb. Begär offert.',
+    excerpt:
+      'Montering, demontering och uthyrning av byggställning upp till 200 m² — för tak, fasad och målning.',
+    body: [
+      'Ska du byta tak, renovera fasaden eller måla om huset? Vi hyr ut byggställning i Sundsvallsområdet — upp till 200 m² — och tar hand om hela kedjan: transport, montering, säkerhetskontroll och demontering när jobbet är klart.',
+      'En korrekt monterad ställning är skillnaden mellan ett säkert, effektivt jobb och ett riskabelt. Vi monterar enligt Arbetsmiljöverkets föreskrifter, förankrar i fasaden där det krävs och anpassar ställningen efter huset — även vid trånga tomter, sluttningar och utbyggnader.',
+      'Ställningen går att hyra fristående till ditt eget projekt, med eller utan montering. Vid våra egna tak- och fasadentreprenader ingår etableringen alltid i offerten, så du slipper anlita en separat ställningsfirma.',
+    ],
+    items: [
+      'Uthyrning av byggställning — upp till 200 m²',
+      'Montering och demontering av fasadställning',
+      'Ställning för takbyte, fasadrenovering och målning',
+      'Transport, etablering och säkerhetskontroll',
+      'Ingår alltid vid våra egna tak- och fasadprojekt',
+    ],
+    faq: [
+      {
+        q: 'Kan man hyra byggställning av er?',
+        a: 'Ja, vi hyr ut byggställning upp till 200 m² i Sundsvallsområdet — med eller utan montering. Berätta om projektet så återkommer vi med pris och tillgänglighet.',
+      },
+      {
+        q: 'Vad kostar det att hyra byggställning i Sundsvall?',
+        a: 'Priset beror på yta, hyrestid och om vi ska montera och demontera. Vi lämnar alltid en kostnadsfri offert med fast pris — hör av dig med mått på huset så räknar vi på det.',
+      },
+      {
+        q: 'Monterar och demonterar ni ställningen?',
+        a: 'Ja, vi utför både montering och demontering. Ställningen förankras och kontrolleras enligt Arbetsmiljöverkets föreskrifter innan den tas i bruk.',
+      },
+      {
+        q: 'Ingår ställning när ni gör taket eller fasaden?',
+        a: 'Ja, vid våra egna entreprenader ingår ställning, etablering och nedmontering i offerten — du behöver inte anlita någon separat ställningsfirma.',
+      },
+    ],
+    related: ['taklaggning', 'underhall'],
+    images: [
+      {
+        src: fasadStallning,
+        alt: 'Byggställning monterad längs träfasad inför fasadarbete',
+      },
+      {
+        src: takbyteStallning,
+        alt: 'Byggställning rest runt äldre trähus inför takbyte',
+      },
+    ],
+  },
 ];
 
 /** Utvalda projektbilder till startsidans referensgalleri */
