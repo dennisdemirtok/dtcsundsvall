@@ -1,0 +1,61 @@
+---
+// Vektoriserad version av DTC Sundsvalls logga: dubbel taklinje,
+// DTC i spärrade versaler, balk + SUNDSVALL under.
+interface Props {
+  /** Höjd i px (bredd skalar med) */
+  height?: number;
+  class?: string;
+}
+
+const { height = 56, class: className } = Astro.props;
+const width = Math.round(height * (200 / 122));
+---
+
+<svg
+  class:list={['dtc-logo', className]}
+  viewBox="0 0 200 122"
+  width={width}
+  height={height}
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="DTC Sundsvall"
+>
+  <!-- Dubbel taklinje -->
+  <g fill="none" stroke-linecap="butt" stroke-miterlimit="4" class="logo-roof">
+    <path d="M2 50 L76 5 L143 50" stroke-width="8.5" />
+    <path d="M108 21.5 L124 6.5 L194 50" stroke-width="8.5" />
+  </g>
+
+  <!-- DTC -->
+  <text x="0" y="95" class="logo-dtc" textLength="176" lengthAdjust="spacing">DTC</text>
+
+  <!-- Balk + SUNDSVALL -->
+  <rect x="0" y="106" width="80" height="8" class="logo-bar" />
+  <text x="88" y="114.5" class="logo-sub" textLength="106" lengthAdjust="spacing">SUNDSVALL</text>
+</svg>
+
+<style>
+  .logo-roof path {
+    stroke: var(--timber);
+  }
+
+  .logo-bar {
+    fill: var(--timber);
+  }
+
+  .logo-dtc {
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 82;
+    font-weight: 800;
+    font-size: 47px;
+    fill: var(--logo-ink, var(--paper));
+  }
+
+  .logo-sub {
+    font-family: var(--font-display);
+    font-variation-settings: 'wdth' 82;
+    font-weight: 600;
+    font-size: 13px;
+    fill: var(--logo-sub, var(--timber));
+  }
+</style>

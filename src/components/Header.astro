@@ -1,4 +1,6 @@
 ---
+import Logo from './Logo.astro';
+
 const links = [
   { href: '/tjanster/taklaggning/', label: 'Takläggning' },
   { href: '/tjanster/byggnation/', label: 'Byggnation' },
@@ -11,13 +13,7 @@ const links = [
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="logo" href="/" aria-label="DTC Sundsvall AB — startsida">
-      <span class="logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 34 24" width="34" height="24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 22 L17 4 L32 22" fill="none" stroke="var(--timber)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M9.5 22 L17 13 L24.5 22" fill="none" stroke="var(--timber)" stroke-width="1.6" opacity=".55" />
-        </svg>
-      </span>
-      <span class="logo-text">DTC <em>Sundsvall</em></span>
+      <Logo height={52} />
     </a>
 
     <button
@@ -62,23 +58,8 @@ const links = [
   .logo {
     display: flex;
     align-items: center;
-    gap: 11px;
     text-decoration: none;
-    color: var(--paper);
-  }
-
-  .logo-text {
-    font-family: var(--font-display);
-    font-variation-settings: 'wdth' 76;
-    font-weight: 850;
-    font-size: 19px;
-    text-transform: uppercase;
-    letter-spacing: .02em;
-  }
-
-  .logo-text em {
-    font-style: normal;
-    color: var(--timber);
+    padding: 8px 0;
   }
 
   .site-nav ul {

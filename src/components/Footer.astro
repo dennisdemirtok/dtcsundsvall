@@ -1,5 +1,6 @@
 ---
 import { services } from '../data/services';
+import Logo from './Logo.astro';
 
 const year = new Date().getFullYear();
 ---
@@ -7,7 +8,9 @@ const year = new Date().getFullYear();
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div>
-      <p class="footer-logo">DTC <em>Sundsvall</em> AB</p>
+      <div class="footer-logo">
+        <Logo height={74} />
+      </div>
       <p class="footer-tag">
         Bygg, tak, renovering och snickeri i Sundsvallsområdet.
         Byggt för att hålla i norrländskt klimat.
@@ -64,18 +67,7 @@ const year = new Date().getFullYear();
   }
 
   .footer-logo {
-    font-family: var(--font-display);
-    font-variation-settings: 'wdth' 76;
-    font-weight: 850;
-    font-size: 21px;
-    text-transform: uppercase;
-    color: var(--paper);
-    margin: 0 0 12px;
-  }
-
-  .footer-logo em {
-    font-style: normal;
-    color: var(--timber);
+    margin: 0 0 16px;
   }
 
   .footer-tag {
