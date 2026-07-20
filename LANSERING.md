@@ -1,0 +1,42 @@
+# Lanseringschecklista — synlighet i Google
+
+Ordnad efter prioritet. (JS = Dennis gör, 🤖 = Claude kan göra/verifiera)
+
+## Vecka 1 — teknisk grund
+
+- [ ] **Koppla domänen** (JS)
+  - Railway → Settings → Networking → Custom Domain: `www.dtcsundsvall.se` (CNAME hos registraren)
+  - Apex `dtcsundsvall.se` → redirect till `https://www.dtcsundsvall.se` hos registraren
+  - 🤖 Verifiera efteråt: cert, redirect, `/sitemap-index.xml`, `/robots.txt`
+- [ ] **Google Search Console** (JS) — [search.google.com/search-console](https://search.google.com/search-console)
+  - Verifiera domänen via DNS-post
+  - Skicka in sitemap: `https://www.dtcsundsvall.se/sitemap-index.xml`
+  - Begär indexering av startsidan + /tjanster/taklaggning/
+- [ ] **Google Business Profile** (JS) — [business.google.com](https://business.google.com)
+  - Exakt NAP: DTC Sundsvall AB, Vikarbodarna 140, 862 96 Njurunda + riktigt telefonnummer
+  - Kategorier: Byggfirma (primär), Takläggare, Snickare
+  - Ladda upp logga + arbetsbilder, länka till sajten
+- [ ] **Riktigt telefonnummer** — JS ger numret, 🤖 byter `060-00 00 00`/`+4660000000` i koden
+  (Footer, kontaktsidan, startsidans CTA, integritetspolicyn, Seo.astro)
+- [ ] **Resend** — JS skapar konto + verifierar domänen; sätt `RESEND_API_KEY` + `LEAD_EMAIL`
+  i Railway; 🤖 byter from-adress i `src/pages/api/contact.ts` och testar formuläret
+
+## Vecka 2 — förstärkning
+
+- [ ] **Google-recensioner** (JS, löpande) — be 3–5 nöjda kunder direkt; gör till rutin efter varje jobb
+- [ ] **Kataloger med samma NAP** (JS) — hitta.se, eniro.se, merinfo.se
+- [ ] **Bing Webmaster Tools** (JS) — importera från Search Console
+- [ ] **Sociala profiler** (JS) — lägg webbadressen på Facebook/Instagram; posta arbetsbilder
+
+## Månad 1+ — innehåll och uppföljning
+
+- [ ] 🤖 Landningssida `/byggfirma-solleftea/` för Sollefteå-området
+- [ ] Referensprojekt med ort ("Takbyte i Matfors") när kundgodkännanden finns
+- [ ] Följ upp i Search Console månadsvis (sökfraser, klick, positioner)
+- [ ] Rich Results Test (Google) — validera LocalBusiness + FAQPage efter lansering
+- [ ] Lighthouse mobil ≥ 95 på produktionsdomänen
+
+## Förväntan
+
+Indexerad inom dagar · kartpaketet ger samtal när GBP har recensioner (veckor) ·
+organiska positioner byggs upp 2–6 månader.
