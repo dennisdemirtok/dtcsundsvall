@@ -4,10 +4,10 @@ Ordnad efter prioritet. (JS = Dennis gör, 🤖 = Claude kan göra/verifiera)
 
 ## Vecka 1 — teknisk grund
 
-- [ ] **Koppla domänen** (JS)
-  - Railway → Settings → Networking → Custom Domain: `www.dtcsundsvall.se` (CNAME hos registraren)
-  - Apex `dtcsundsvall.se` → redirect till `https://www.dtcsundsvall.se` hos registraren
-  - 🤖 Verifiera efteråt: cert, redirect, `/sitemap-index.xml`, `/robots.txt`
+- [x] **Koppla domänen** — KLAR 2026-07-26 ✅
+  - Domän köpt hos Strato, DNS på Cloudflare, Railway-integration för `www`
+  - Apex → www via Cloudflare Redirect Rule (301, bevarar path + query)
+  - Verifierat: cert OK, www 200, apex 301, sitemap/robots/og-bild 200
 - [ ] **Google Search Console** (JS) — [search.google.com/search-console](https://search.google.com/search-console)
   - Verifiera domänen via DNS-post
   - Skicka in sitemap: `https://www.dtcsundsvall.se/sitemap-index.xml`
