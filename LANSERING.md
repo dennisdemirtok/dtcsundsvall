@@ -28,6 +28,10 @@ Ordnad efter prioritet. (JS = Dennis gör, 🤖 = Claude kan göra/verifiera)
 
 ## Månad 1+ — innehåll och uppföljning
 
+- [x] 🤖 Artikelsektion `/artiklar/` — KLAR 2026-07-28 ✅ (6 SEO-guider: takbyte-kostnad,
+  takbyte steg för steg, takmaterial, altan, ROT 2026, vinterbona fritidshus)
+  - [ ] JS: begär indexering av `/artiklar/` + takbyte-artikeln i Search Console
+  - [ ] Fyll på med 1–2 artiklar per månad (🤖 skriver utkast på beställning)
 - [ ] 🤖 Landningssida `/byggfirma-solleftea/` för Sollefteå-området
 - [ ] Referensprojekt med ort ("Takbyte i Matfors") när kundgodkännanden finns
 - [ ] Följ upp i Search Console månadsvis (sökfraser, klick, positioner)
