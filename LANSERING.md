@@ -18,8 +18,10 @@ Ordnad efter prioritet. (JS = Dennis gör, 🤖 = Claude kan göra/verifiera)
   - Ladda upp logga + arbetsbilder, länka till sajten
 - [x] **Riktigt telefonnummer** — KLAR ✅ 070-333 05 87 överallt
   (Footer, kontaktsidan, startsidans CTA, integritetspolicyn, Seo.astro/JSON-LD)
-- [ ] **Resend** — JS skapar konto + verifierar domänen; sätt `RESEND_API_KEY` + `LEAD_EMAIL`
-  i Railway; 🤖 byter from-adress i `src/pages/api/contact.ts` och testar formuläret
+- [x] **Resend + mail** — KLAR 2026-07-28 ✅
+  - Domän verifierad i Resend, formuläret skickar från `offert@dtcsundsvall.se`
+  - `info@dtcsundsvall.se` via Cloudflare Email Routing → Gmail (+ catch-all)
+  - Livetestat: honeypot, validering och riktig förfrågan hela vägen till inkorgen
 
 ## Vecka 2 — förstärkning
 
