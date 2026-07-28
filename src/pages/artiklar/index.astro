@@ -1,0 +1,127 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Ruler from '../../components/Ruler.astro';
+
+const artiklar = (await getCollection('artiklar')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Base
+  title="Artiklar & guider om bygg och tak i Sundsvall | DTC Sundsvall AB"
+  description="Guider om takbyte, altanbygge, ROT-avdrag och renovering i Sundsvall — kostnader, regler och tips från en lokal byggfirma. Läs innan du begär offert."
+  path="/artiklar/"
+  breadcrumbs={[
+    { name: 'Hem', url: '/' },
+    { name: 'Artiklar', url: '/artiklar/' },
+  ]}
+>
+  <section class="page-hero section-dark">
+    <div class="wrap">
+      <span class="eyebrow">Artiklar &amp; guider</span>
+      <h1>Kunskap från byggplatsen</h1>
+      <p class="hero-sub">
+        Kostnader, regler och praktiska råd för dig som planerar tak, altan eller
+        renovering i Sundsvallsområdet — skrivet av oss som gör jobben.
+      </p>
+    </div>
+  </section>
+  <Ruler tone="dark" />
+
+  <section class="section">
+    <div class="wrap">
+      <div class="article-list">
+        {artiklar.map((a) => (
+          <article class="card article-card">
+            <span class="dim-label">{a.data.dim}</span>
+            <h2><a href={`/artiklar/${a.id}/`}>{a.data.title}</a></h2>
+            <p class="article-desc">{a.data.description}</p>
+            <p class="article-date">{fmt(a.data.pubDate)}</p>
+            <a class="card-link" href={`/artiklar/${a.id}/`}>Läs artikeln →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero {
+    padding: clamp(48px, 7vw, 80px) 0 clamp(40px, 6vw, 64px);
+    background: linear-gradient(160deg, var(--spruce) 0%, var(--spruce-2) 100%);
+  }
+
+  .page-hero h1 {
+    color: var(--paper);
+    font-size: clamp(34px, 5.5vw, 64px);
+    margin: 0 0 14px;
+  }
+
+  .hero-sub {
+    color: rgba(247, 245, 240, .72);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  .article-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .article-card h2 {
+    font-size: clamp(19px, 2.2vw, 24px);
+    margin: 2px 0 0;
+  }
+
+  .article-card h2 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .article-card h2 a:hover {
+    color: var(--timber-deep);
+  }
+
+  .article-desc {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .article-date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .card-link {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--timber-deep);
+    text-decoration: none;
+  }
+
+  .card-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 720px) {
+    .article-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

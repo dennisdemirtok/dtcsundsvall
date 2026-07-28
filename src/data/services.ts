@@ -90,7 +90,7 @@ export const services: Service[] = [
       },
       {
         q: 'Gäller ROT-avdrag för takbyte?',
-        a: 'Ja, som privatperson får du ROT-avdrag på 50 % av arbetskostnaden, upp till 50 000 kr per person och år. Vi sköter administrationen direkt mot Skatteverket — du betalar bara nettobeloppet.',
+        a: 'Ja, som privatperson får du ROT-avdrag på 30 % av arbetskostnaden, upp till 50 000 kr per person och år. Vi sköter administrationen direkt mot Skatteverket — du betalar bara nettobeloppet.',
       },
     ],
     related: ['byggnation', 'underhall'],

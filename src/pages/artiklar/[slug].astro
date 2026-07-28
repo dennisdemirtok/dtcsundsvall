@@ -1,0 +1,330 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Ruler from '../../components/Ruler.astro';
+import { getService } from '../../data/services';
+
+export async function getStaticPaths() {
+  const artiklar = await getCollection('artiklar');
+  return artiklar.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const site = (Astro.site ?? new URL('https://www.dtcsundsvall.se')).href.replace(/\/$/, '');
+const url = `/artiklar/${entry.id}/`;
+
+const related = entry.data.services
+  .map((s) => getService(s))
+  .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: entry.data.title,
+    description: entry.data.description,
+    datePublished: entry.data.pubDate.toISOString(),
+    ...(entry.data.updatedDate && { dateModified: entry.data.updatedDate.toISOString() }),
+    inLanguage: 'sv-SE',
+    mainEntityOfPage: `${site}${url}`,
+    author: { '@type': 'Organization', name: 'DTC Sundsvall AB', url: `${site}/` },
+    publisher: { '@id': `${site}/#business` },
+  },
+];
+
+const breadcrumbs = [
+  { name: 'Hem', url: '/' },
+  { name: 'Artiklar', url: '/artiklar/' },
+  { name: entry.data.title, url },
+];
+---
+
+<Base
+  title={`${entry.data.title} | DTC Sundsvall AB`}
+  description={entry.data.description}
+  path={url}
+  {breadcrumbs}
+  {jsonLd}
+>
+  <section class="article-hero section-dark">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Brödsmulor">
+        <a href="/">Hem</a> <span aria-hidden="true">/</span>
+        <a href="/artiklar/">Artiklar</a>
+      </nav>
+      <span class="dim-label article-dim">{entry.data.dim}</span>
+      <h1>{entry.data.title}</h1>
+      <p class="article-meta">
+        Publicerad {fmt(entry.data.pubDate)}
+        {entry.data.updatedDate && ` · Uppdaterad ${fmt(entry.data.updatedDate)}`}
+        · DTC Sundsvall AB
+      </p>
+    </div>
+  </section>
+
+  <Ruler tone="dark" />
+
+  <section class="section">
+    <div class="wrap article-grid">
+      <article class="prose">
+        <Content />
+      </article>
+
+      <aside class="article-aside">
+        <div class="aside-card">
+          <span class="dim-label">OFFERT &lt; 24 H</span>
+          <h2 class="aside-h">Kostnadsfri offert</h2>
+          <p>
+            Funderar du på ett projekt? Beskriv det så återkommer vi inom en arbetsdag
+            med besiktningstid och fast pris.
+          </p>
+          <a class="btn btn-primary" href="/kontakt/">Begär offert</a>
+        </div>
+
+        {related.length > 0 && (
+          <div class="aside-card">
+            <h2 class="aside-h aside-h-sm">Relaterade tjänster</h2>
+            <ul class="related-list">
+              {related.map((r) => (
+                <li><a href={`/tjanster/${r.slug}/`}>{r.title}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-dark article-cta">
+    <div class="wrap">
+      <span class="eyebrow">Nästa steg</span>
+      <h2>Vill du ha hjälp med ditt projekt?</h2>
+      <p class="cta-lead">
+        Vi utför alla arbeten i artikeln — i hela Sundsvallsområdet och Västernorrland,
+        med fast offert och ROT-avdrag direkt på fakturan.
+      </p>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="/kontakt/">Begär kostnadsfri offert</a>
+        <a class="btn btn-outline" href="tel:+46703330587">Ring 070-333 05 87</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .article-hero {
+    padding: clamp(48px, 7vw, 80px) 0 clamp(40px, 6vw, 64px);
+    background: linear-gradient(160deg, var(--spruce) 0%, var(--spruce-2) 100%);
+  }
+
+  .crumbs {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: rgba(247, 245, 240, .55);
+    margin-bottom: 26px;
+  }
+
+  .crumbs a {
+    color: rgba(247, 245, 240, .75);
+    text-decoration: none;
+  }
+
+  .crumbs a:hover {
+    color: var(--timber);
+  }
+
+  .crumbs span[aria-hidden] {
+    margin: 0 6px;
+  }
+
+  .article-dim {
+    color: var(--timber);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .article-hero h1 {
+    color: var(--paper);
+    font-size: clamp(30px, 4.6vw, 54px);
+    margin: 0 0 16px;
+    max-width: 24ch;
+  }
+
+  .article-meta {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: .06em;
+    color: rgba(247, 245, 240, .6);
+    margin: 0;
+  }
+
+  .article-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    gap: clamp(32px, 5vw, 70px);
+    align-items: start;
+  }
+
+  /* ---------- Artikeltypografi ---------- */
+
+  .prose {
+    max-width: 68ch;
+  }
+
+  .prose :global(p) {
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+
+  .prose :global(h2) {
+    font-size: clamp(22px, 2.6vw, 30px);
+    margin-top: 44px;
+  }
+
+  .prose :global(h3) {
+    font-size: clamp(17px, 1.9vw, 21px);
+    margin-top: 32px;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    color: var(--ink-soft);
+    line-height: 1.75;
+    padding-left: 22px;
+    margin: 0 0 1em;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 6px;
+  }
+
+  .prose :global(li::marker) {
+    color: var(--timber-deep);
+  }
+
+  .prose :global(a) {
+    color: var(--timber-deep);
+    font-weight: 600;
+  }
+
+  .prose :global(strong) {
+    color: var(--ink);
+  }
+
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1.5em;
+    font-size: 15px;
+  }
+
+  .prose :global(th) {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--ink-soft);
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--line);
+  }
+
+  .prose :global(td) {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+
+  .prose :global(blockquote) {
+    margin: 0 0 1.5em;
+    padding: 16px 22px;
+    background: var(--paper-2);
+    border-left: 3px solid var(--timber);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+
+  .prose :global(blockquote p) {
+    margin: 0;
+  }
+
+  /* ---------- Sidokolumn ---------- */
+
+  .article-aside {
+    display: grid;
+    gap: 18px;
+    position: sticky;
+    top: 90px;
+  }
+
+  .aside-card {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px;
+  }
+
+  .aside-h {
+    font-size: 21px;
+    margin: 8px 0 10px;
+  }
+
+  .aside-h-sm {
+    font-size: 18px;
+    margin-top: 0;
+  }
+
+  .aside-card p {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+  }
+
+  .related-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  .related-list a {
+    color: var(--timber-deep);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+  }
+
+  .related-list a:hover {
+    text-decoration: underline;
+  }
+
+  /* ---------- CTA ---------- */
+
+  .cta-lead {
+    color: rgba(247, 245, 240, .72);
+    max-width: 52ch;
+    margin-bottom: 28px;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  @media (max-width: 960px) {
+    .article-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .article-aside {
+      position: static;
+    }
+  }
+</style>
