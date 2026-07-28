@@ -8,14 +8,10 @@ Ordnad efter prioritet. (JS = Dennis gör, 🤖 = Claude kan göra/verifiera)
   - Domän köpt hos Strato, DNS på Cloudflare, Railway-integration för `www`
   - Apex → www via Cloudflare Redirect Rule (301, bevarar path + query)
   - Verifierat: cert OK, www 200, apex 301, sitemap/robots/og-bild 200
-- [ ] **Google Search Console** (JS) — [search.google.com/search-console](https://search.google.com/search-console)
-  - Verifiera domänen via DNS-post
-  - Skicka in sitemap: `https://www.dtcsundsvall.se/sitemap-index.xml`
-  - Begär indexering av startsidan + /tjanster/taklaggning/
-- [ ] **Google Business Profile** (JS) — [business.google.com](https://business.google.com)
-  - Exakt NAP: DTC Sundsvall AB, Vikarbodarna 140, 862 96 Njurunda + riktigt telefonnummer
-  - Kategorier: Byggfirma (primär), Takläggare, Snickare
-  - Ladda upp logga + arbetsbilder, länka till sajten
+- [x] **Google Search Console** — domän verifierad 2026-07-28 ✅
+  - [ ] Skicka in sitemap: fältet i Sitemaps-fliken → skriv `sitemap-index.xml`
+- [x] **Google Business Profile** — KLAR 2026-07-28 ✅ (profil skapad med rätt NAP)
+  - Obs: Google skickar ofta verifiering (vykort/video) innan profilen syns publikt
 - [x] **Riktigt telefonnummer** — KLAR ✅ 070-333 05 87 överallt
   (Footer, kontaktsidan, startsidans CTA, integritetspolicyn, Seo.astro/JSON-LD)
 - [x] **Resend + mail** — KLAR 2026-07-28 ✅
