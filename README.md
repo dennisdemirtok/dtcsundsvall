@@ -40,8 +40,6 @@ kontoägarens egen e-post — bra för test, inte för produktion.)
 
 ## Före lansering
 
-Telefonnumret `060-00 00 00` är fortfarande platshållare — sök på `060-00 00 00`
-och `+4660000000` i koden och ersätt (Footer, kontaktsidan, startsidans CTA,
-integritetspolicyn och `Seo.astro`). Org.nr (559145-2353) och adress
-(Vikarbodarna 140, 862 96 Njurunda) är ifyllda. NAP-uppgifterna måste matcha
-Google Business Profile exakt. Full checklista i [CLAUDE.md](CLAUDE.md) §6.4 och §12.
+Alla företagsuppgifter är ifyllda: telefon 070-333 05 87, org.nr 559145-2353,
+adress Vikarbodarna 140, 862 96 Njurunda. NAP-uppgifterna måste matcha
+Google Business Profile exakt. Full checklista i [LANSERING.md](LANSERING.md).

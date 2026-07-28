@@ -16,8 +16,8 @@ Ordnad efter prioritet. (JS = Dennis gör, 🤖 = Claude kan göra/verifiera)
   - Exakt NAP: DTC Sundsvall AB, Vikarbodarna 140, 862 96 Njurunda + riktigt telefonnummer
   - Kategorier: Byggfirma (primär), Takläggare, Snickare
   - Ladda upp logga + arbetsbilder, länka till sajten
-- [ ] **Riktigt telefonnummer** — JS ger numret, 🤖 byter `060-00 00 00`/`+4660000000` i koden
-  (Footer, kontaktsidan, startsidans CTA, integritetspolicyn, Seo.astro)
+- [x] **Riktigt telefonnummer** — KLAR ✅ 070-333 05 87 överallt
+  (Footer, kontaktsidan, startsidans CTA, integritetspolicyn, Seo.astro/JSON-LD)
 - [ ] **Resend** — JS skapar konto + verifierar domänen; sätt `RESEND_API_KEY` + `LEAD_EMAIL`
   i Railway; 🤖 byter from-adress i `src/pages/api/contact.ts` och testar formuläret
 

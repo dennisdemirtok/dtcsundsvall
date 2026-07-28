@@ -18,14 +18,13 @@ const { title, description, path, breadcrumbs, jsonLd = [] } = Astro.props;
 const site = (Astro.site ?? new URL('https://www.dtcsundsvall.se')).href.replace(/\/$/, '');
 const canonical = `${site}${path === '/' ? '/' : path.replace(/\/?$/, '/')}`;
 
-// OBS: fyll i riktigt telefonnummer före lansering
 const business = {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
   '@id': `${site}/#business`,
   name: 'DTC Sundsvall AB',
   url: `${site}/`,
-  telephone: '+46-60-000000',
+  telephone: '+46703330587',
   email: 'info@dtcsundsvall.se',
   vatID: 'SE559145235301',
   taxID: '559145-2353',
