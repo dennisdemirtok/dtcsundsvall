@@ -33,10 +33,9 @@ Kopiera `.env.example` → `.env`:
 
 ### Resend
 
-Innan riktiga leads kan skickas: verifiera domänen `dtcsundsvall.se` i Resend och byt
-`from`-adressen i `src/pages/api/contact.ts` från `onboarding@resend.dev` till t.ex.
-`offert@dtcsundsvall.se`. (Med onboarding-adressen kan Resend bara skicka till
-kontoägarens egen e-post — bra för test, inte för produktion.)
+Domänen är verifierad i Resend och formuläret skickar från `offert@dtcsundsvall.se`
+till `LEAD_EMAIL` (info@dtcsundsvall.se, som Cloudflare Email Routing vidarebefordrar
+till Gmail).
 
 ## Före lansering
 

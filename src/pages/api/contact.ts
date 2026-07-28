@@ -87,7 +87,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   try {
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
-      from: 'DTC Sundsvall <onboarding@resend.dev>',
+      from: 'DTC Sundsvall <offert@dtcsundsvall.se>',
       to: [leadEmail],
       replyTo: email,
       subject: `Offertförfrågan: ${type || 'Ej angivet'} — ${name}`,
